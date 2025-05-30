@@ -80,4 +80,17 @@ describe('ManageGroupsComponent', () => {
       'warning'
     );
   });
+  it('submitNewGroup(): should warn when group name is too long', () => {
+    spyOn(Swal, 'fire');
+    comp.newGroupName = 'x'.repeat(31);
+    comp.newCourse = '1st';
+
+    comp.submitNewGroup();
+
+    expect(Swal.fire).toHaveBeenCalledWith(
+      'Validation',
+      'Group name cannot exceed 30 characters.',
+      'warning'
+    );
+  });
 });
