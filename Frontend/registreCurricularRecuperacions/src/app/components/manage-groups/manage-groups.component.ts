@@ -37,4 +37,11 @@ export class ManageGroupsComponent implements OnInit {
       this.newCourse = '';
     }
   }
+  public submitNewGroup(): void {
+    const name = this.newGroupName.trim();
+    if (!name) {
+      Swal.fire('Validation', 'Group name is required.', 'warning');
+    }
+  }
 }
+
