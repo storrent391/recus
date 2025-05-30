@@ -47,5 +47,9 @@ export class ManageGroupsComponent implements OnInit {
       Swal.fire('Validation', 'Group name cannot exceed 30 characters.', 'warning');
       return;
     }
+    if (!this.newCourse) {
+      Swal.fire('Validation', 'Course selection is required.', 'warning');
+      return;
+    }
   }
 }
