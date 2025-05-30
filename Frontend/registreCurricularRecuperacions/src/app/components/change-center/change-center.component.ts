@@ -24,11 +24,17 @@ export class ChangeCenterComponent {
     });
   }
 
-  onSelectCenter(center: any): void {
+  public onSelectCenter(center: any): void {
     this.auth.chooseCenterProtected(center.centerName).subscribe({
-      next: res => this.handleSuccess(res.token)
+      next: res => this.handleSuccess(res.token),
+      error: err => this.handleError(err)
     });
   }
+
+  public handleError(err: any): void {
+    
+  }
+
 
   handleSuccess(token: string): void {
     
