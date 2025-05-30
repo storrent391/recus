@@ -93,4 +93,17 @@ describe('ManageGroupsComponent', () => {
       'warning'
     );
   });
+  it('submitNewGroup(): should warn when course selection is empty', () => {
+    spyOn(Swal, 'fire');
+    comp.newGroupName = 'ValidName';
+    comp.newCourse = ''; 
+
+    comp.submitNewGroup();
+
+    expect(Swal.fire).toHaveBeenCalledWith(
+      'Validation',
+      'Course selection is required.',
+      'warning'
+    );
+  });
 });
