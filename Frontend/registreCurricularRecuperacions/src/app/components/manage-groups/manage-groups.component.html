@@ -1,0 +1,70 @@
+<div class="manage-groups">
+  <h2>Manage Groups ({{ currentYear }})</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Year</th>
+          <th>Save</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of groups">
+          <td>
+            <input
+              type="text"
+              [(ngModel)]="g.name"
+              maxlength="30"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </td>
+          <td>{{ g.courseName }}</td>
+          <td>{{ g.year }}</td>
+          <td>
+            <button
+              (click)="saveName(g)"
+              [disabled]="g.name === originalNames[g.uuid]"
+            >💾</button>
+          </td>
+          <td>
+            <button (click)="confirmDelete(g)">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="groups.length === 0">
+          <td colspan="5" class="empty-state">No groups found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="add-button" (click)="toggleForm()">
+    <span>+</span> Add Group
+  </button>
+
+  <form *ngIf="showForm" class="add-form" (ngSubmit)="submitNewGroup()">
+    <input
+      type="text"
+      [(ngModel)]="newGroupName"
+      name="newGroupName"
+      maxlength="30"
+      placeholder="Group name"
+      required
+    />
+    <select
+      [(ngModel)]="newCourse"
+      name="newCourse"
+      required
+    >
+      <option value="" disabled selected>-- Select course --</option>
+      <option *ngFor="let opt of courseOptions" [value]="opt">{{ opt }}</option>
+    </select>
+    <div class="form-buttons">
+      <button type="submit">Save</button>
+      <button type="button" (click)="toggleForm()">Cancel</button>
+    </div>
+  </form>
+</div>
