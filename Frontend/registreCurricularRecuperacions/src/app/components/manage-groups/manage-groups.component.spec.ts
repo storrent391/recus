@@ -1,109 +1,116 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { ManageGroupsComponent } from './manage-groups.component';
 import { GroupsService } from '../../../services/groups.service';
 import Swal from 'sweetalert2';
+import { GroupModel } from '../../../models/groups/group.model';
 
 
-describe('ManageGroupsComponent', () => {
-  let fixture: ComponentFixture<ManageGroupsComponent>;
-  let comp: ManageGroupsComponent;
-  let groupsService: jasmine.SpyObj<GroupsService>;
+const mockGroups: GroupModel[] = [
+  new GroupModel('1', 'Alpha', 'Center A', '1st', '2025-26')
+];
 
-  const mockList = [
-    { uuid: '1', name: 'Alpha', courseName: '1st', year: '2025-26' }
-  ];
+  describe('ManageGroupsComponent', () => {
+    let fixture: ComponentFixture<ManageGroupsComponent>;
+    let comp: ManageGroupsComponent;
+    let groupsService: jasmine.SpyObj<GroupsService>;
 
-  beforeEach(async () => {
-    groupsService = jasmine.createSpyObj('GroupsService', ['getGroupsByYear']);
-    
-    groupsService.getGroupsByYear.and.returnValue(of(mockList as any));
+    beforeEach(async () => {
+      groupsService = jasmine.createSpyObj('GroupsService', [
+        'getGroupsByYear',
+        'createGroup',
+        'updateGroupName',
+        'deleteGroup'
+      ]);
 
-    await TestBed.configureTestingModule({
-      imports: [ManageGroupsComponent],
-      providers: [
-        { provide: GroupsService, useValue: groupsService }
-      ]
-    }).compileComponents();
+      
+      groupsService.getGroupsByYear.and.returnValue(of(mockGroups));
 
-    fixture = TestBed.createComponent(ManageGroupsComponent);
-    comp    = fixture.componentInstance;
-  });
+      spyOn(Swal, 'fire').and.returnValue(Promise.resolve<any>({ isConfirmed: true }));
 
-  it('should create the component', () => {
-    expect(comp).toBeTruthy();
-  });
+      await TestBed.configureTestingModule({
+        imports: [ManageGroupsComponent],
+        providers: [
+          { provide: GroupsService, useValue: groupsService }
+        ]
+      }).compileComponents();
 
-  it('ngOnInit(): should call getGroupsByYear and set groups + originalNames', () => {
-    comp.ngOnInit();
-    expect(groupsService.getGroupsByYear).toHaveBeenCalledWith('');
-    expect(comp.groups).toEqual(mockList);
-    expect(comp.originalNames).toEqual({ '1': 'Alpha' });
-  });
+      fixture = TestBed.createComponent(ManageGroupsComponent);
+      comp = fixture.componentInstance;
+    });
 
-  it('ngOnInit(): should show error alert on load failure', () => {
-    
-    groupsService.getGroupsByYear.and.returnValue(throwError(() => ({ error: {} })));
-    
-    spyOn(Swal, 'fire');
+    it('should create the component', () => {
+      expect(comp).toBeTruthy();
+    });
 
-    comp.ngOnInit();
+    it('ngOnInit(): loads groups and sets originalNames', fakeAsync(() => {
+      comp.ngOnInit();
+      tick();
+      expect(groupsService.getGroupsByYear).toHaveBeenCalled();
+      expect(comp.groups).toEqual(mockGroups);
+      expect(comp.originalNames).toEqual({ '1': 'Alpha' });
+    }));
 
-    expect(Swal.fire).toHaveBeenCalledWith('Error', 'Unable to load groups.', 'error');
-  });
-  it('toggleForm(): should toggle showForm and reset inputs', () => {
-    
-    comp.showForm = false;
-    comp.newGroupName = 'TestName';
-    comp.newCourse = '1st';
+    it('ngOnInit(): shows error alert on failure', fakeAsync(() => {
+      groupsService.getGroupsByYear.and.returnValue(throwError(() => ({ error: {} })));
+      comp.ngOnInit();
+      tick();
+      expect(Swal.fire).toHaveBeenCalledWith('Error', 'Unable to load groups.', 'error');
+    }));
+    it('toggleForm(): should toggle showForm and reset inputs', () => {
+      
+      comp.showForm = false;
+      comp.newGroupName = 'TestName';
+      comp.newCourse = '1st';
 
-    
-    comp.toggleForm();
-    expect(comp.showForm).toBeTrue();
+      
+      comp.toggleForm();
+      expect(comp.showForm).toBeTrue();
 
-    
-    comp.toggleForm();
-    expect(comp.showForm).toBeFalse();
-    expect(comp.newGroupName).toBe('');
-    expect(comp.newCourse).toBe('');
-  });
-  it('submitNewGroup(): should warn when group name is empty', () => {
-    spyOn(Swal, 'fire');
-    comp.newGroupName = '';
-    comp.newCourse = '1st';
+      
+      comp.toggleForm();
+      expect(comp.showForm).toBeFalse();
+      expect(comp.newGroupName).toBe('');
+      expect(comp.newCourse).toBe('');
+    });
+    it('submitNewGroup(): should warn when group name is empty', () => {
+      spyOn(Swal, 'fire');
+      comp.newGroupName = '';
+      comp.newCourse = '1st';
 
-    comp.submitNewGroup();
+      comp.submitNewGroup();
 
-    expect(Swal.fire).toHaveBeenCalledWith(
-      'Validation',
-      'Group name is required.',
-      'warning'
-    );
-  });
-  it('submitNewGroup(): should warn when group name is too long', () => {
-    spyOn(Swal, 'fire');
-    comp.newGroupName = 'x'.repeat(31);
-    comp.newCourse = '1st';
+      expect(Swal.fire).toHaveBeenCalledWith(
+        'Validation',
+        'Group name is required.',
+        'warning'
+      );
+    });
+    it('submitNewGroup(): should warn when group name is too long', () => {
+      spyOn(Swal, 'fire');
+      comp.newGroupName = 'x'.repeat(31);
+      comp.newCourse = '1st';
 
-    comp.submitNewGroup();
+      comp.submitNewGroup();
 
-    expect(Swal.fire).toHaveBeenCalledWith(
-      'Validation',
-      'Group name cannot exceed 30 characters.',
-      'warning'
-    );
-  });
-  it('submitNewGroup(): should warn when course selection is empty', () => {
-    spyOn(Swal, 'fire');
-    comp.newGroupName = 'ValidName';
-    comp.newCourse = ''; 
+      expect(Swal.fire).toHaveBeenCalledWith(
+        'Validation',
+        'Group name cannot exceed 30 characters.',
+        'warning'
+      );
+    });
+    it('submitNewGroup(): should warn when course selection is empty', () => {
+      spyOn(Swal, 'fire');
+      comp.newGroupName = 'ValidName';
+      comp.newCourse = ''; 
 
-    comp.submitNewGroup();
+      comp.submitNewGroup();
 
-    expect(Swal.fire).toHaveBeenCalledWith(
-      'Validation',
-      'Course selection is required.',
-      'warning'
-    );
-  });
+      expect(Swal.fire).toHaveBeenCalledWith(
+        'Validation',
+        'Course selection is required.',
+        'warning'
+      );
+    });
+  
 });
