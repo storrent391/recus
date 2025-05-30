@@ -1,0 +1,70 @@
+<div class="create-sda">
+  <h2>Create New Learning Activity</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="createSda()">
+    <div class="field">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        [(ngModel)]="sdaTitle"
+        required
+        maxlength="50"
+        placeholder="Enter title"
+      />
+      <small>{{ sdaTitle.length }}/50</small>
+    </div>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="sdaDescription"
+        required
+        maxlength="1000"
+        rows="4"
+        placeholder="Enter description"
+      ></textarea>
+      <small>{{ sdaDescription.length }}/1000</small>
+    </div>
+
+    <div class="field">
+      <label for="groupSelect">Group</label>
+      <select
+        id="groupSelect"
+        name="groupSelect"
+        [(ngModel)]="selectedGroupId"
+        (change)="onGroupChange()"
+        required
+      >
+        <option value="" disabled selected>-- Select group --</option>
+        <option *ngFor="let grp of groups" [value]="grp.uuid">
+          {{ grp.name }} ({{ grp.courseName }})
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="subjects.length > 0" class="subjects">
+      <h3>Available Subjects</h3>
+      <div *ngFor="let subj of subjects" class="subject-item">
+        <label>
+          <input
+            type="checkbox"
+            (change)="onSubjectToggle(subj.uuid, $event.target.checked)"
+          />
+          {{ subj.name }}
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Creating…' : 'Create SDA' }}
+    </button>
+  </form>
+</div>
