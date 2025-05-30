@@ -1,4 +1,3 @@
-// src/app/manage-groups/manage-groups.component.ts
 import { Component, OnInit } from '@angular/core';
 import { GroupsService } from '../../../services/groups.service';
 import Swal from 'sweetalert2';
@@ -11,6 +10,10 @@ import Swal from 'sweetalert2';
 export class ManageGroupsComponent implements OnInit {
   groups: any[] = [];
   originalNames: Record<string, string> = {};
+
+  showForm = false;
+  newGroupName = '';
+  newCourse = '';
 
   constructor(private groupsService: GroupsService) {}
 
@@ -25,5 +28,13 @@ export class ManageGroupsComponent implements OnInit {
         Swal.fire('Error', 'Unable to load groups.', 'error');
       }
     });
+  }
+
+  public toggleForm(): void {
+    this.showForm = !this.showForm;
+    if (!this.showForm) {
+      this.newGroupName = '';
+      this.newCourse = '';
+    }
   }
 }
