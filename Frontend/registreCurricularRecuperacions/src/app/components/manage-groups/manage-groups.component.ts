@@ -41,7 +41,11 @@ export class ManageGroupsComponent implements OnInit {
     const name = this.newGroupName.trim();
     if (!name) {
       Swal.fire('Validation', 'Group name is required.', 'warning');
+      return;
+    }
+    if (name.length > 30) {
+      Swal.fire('Validation', 'Group name cannot exceed 30 characters.', 'warning');
+      return;
     }
   }
 }
-
