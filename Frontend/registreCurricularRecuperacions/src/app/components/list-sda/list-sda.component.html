@@ -1,1 +1,54 @@
-<p>list-sda works!</p>
+<!-- src/app/list-sda/list-sda.component.html -->
+<div class="list-sda">
+  <h2>Learning Activities</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="controls">
+    <button (click)="changePage(-1)" [disabled]="currentPage === 1">‹ Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="changePage(1)" [disabled]="currentPage === totalPages">Next ›</button>
+
+    <label>
+      Show
+      <select [(ngModel)]="pageSize" (ngModelChange)="updatePageSize(pageSize)">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select>
+      per page
+    </label>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="toggleSort('title')" [class.active]="sortField==='title'">
+          Title {{ sortField==='title' ? (sortDirection==='ASC' ? '▲' : '▼') : '' }}
+        </th>
+        <th>Description</th>
+        <th (click)="toggleSort('createdAt')" [class.active]="sortField==='createdAt'">
+          Created {{ sortField==='createdAt' ? (sortDirection==='ASC' ? '▲' : '▼') : '' }}
+        </th>
+        <th (click)="toggleSort('groupName')" [class.active]="sortField==='groupName'">
+          Group {{ sortField==='groupName' ? (sortDirection==='ASC' ? '▲' : '▼') : '' }}
+        </th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sda of sdaItems">
+        <td>{{ sda.title }}</td>
+        <td>{{ sda.description }}</td>
+        <td>{{ sda.createdAt | date:'short' }}</td>
+        <td>{{ sda.groupName }}</td>
+        <td><button (click)="viewDetails(sda.sdaUUID)">View</button></td>
+      </tr>
+      <tr *ngIf="sdaItems.length === 0">
+        <td colspan="5" class="empty">No activities found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
