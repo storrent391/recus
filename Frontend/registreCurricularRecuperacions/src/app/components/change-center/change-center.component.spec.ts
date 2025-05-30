@@ -34,4 +34,13 @@ describe('ChangeCenterComponent', () => {
     comp.loadCenters();
     expect(comp.centers).toEqual(mockCenters);
   });
+  it('loadCenters(): should set errorMessage when service fails', () => {
+  const mockError = { error: { message: 'Load failed' } };
+  auth.listMyCenters.and.returnValue(throwError(() => mockError));
+
+  comp.loadCenters();
+
+  expect(comp.centers).toEqual([]);
+  expect(comp.errorMessage).toBe('Load failed');
+});
 });
