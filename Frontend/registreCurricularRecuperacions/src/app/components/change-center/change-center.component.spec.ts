@@ -71,14 +71,26 @@ describe('ChangeCenterComponent', () => {
 
   expect(comp.handleError).toHaveBeenCalledWith(error);
   });
-  
+
   it('handleSuccess(): should store token and navigate to dashboard', () => {
-  spyOn(localStorage, 'setItem');
+    spyOn(localStorage, 'setItem');
 
-  comp.handleSuccess('my-token');
+    comp.handleSuccess('my-token');
 
-  expect(localStorage.setItem).toHaveBeenCalledWith('token', 'my-token');
-  expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
+    expect(localStorage.setItem).toHaveBeenCalledWith('token', 'my-token');
+    expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
   });
+
+  it('handleError(): should extract message from error object', () => {
+    comp.handleError({ error: { message: 'center error' } });
+    expect(comp.errorMessage).toBe('center error');
+
+    comp.handleError({ message: 'fallback message' });
+    expect(comp.errorMessage).toBe('fallback message');
+
+    comp.handleError({});
+    expect(comp.errorMessage).toBe('Unknown error');
+  });
+
 
 });
