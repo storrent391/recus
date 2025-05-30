@@ -40,7 +40,7 @@ describe('ManageGroupsComponent', () => {
     expect(comp.groups).toEqual(mockList);
     expect(comp.originalNames).toEqual({ '1': 'Alpha' });
   });
-  
+
   it('ngOnInit(): should show error alert on load failure', () => {
     
     groupsService.getGroupsByYear.and.returnValue(throwError(() => ({ error: {} })));
@@ -50,5 +50,21 @@ describe('ManageGroupsComponent', () => {
     comp.ngOnInit();
 
     expect(Swal.fire).toHaveBeenCalledWith('Error', 'Unable to load groups.', 'error');
-});
+  });
+  it('toggleForm(): should toggle showForm and reset inputs', () => {
+    
+    comp.showForm = false;
+    comp.newGroupName = 'TestName';
+    comp.newCourse = '1st';
+
+    
+    comp.toggleForm();
+    expect(comp.showForm).toBeTrue();
+
+    
+    comp.toggleForm();
+    expect(comp.showForm).toBeFalse();
+    expect(comp.newGroupName).toBe('');
+    expect(comp.newCourse).toBe('');
+  });
 });
