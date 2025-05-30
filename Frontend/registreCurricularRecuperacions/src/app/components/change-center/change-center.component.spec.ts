@@ -70,5 +70,15 @@ describe('ChangeCenterComponent', () => {
   comp.onSelectCenter(selected);
 
   expect(comp.handleError).toHaveBeenCalledWith(error);
-});
+  });
+  
+  it('handleSuccess(): should store token and navigate to dashboard', () => {
+  spyOn(localStorage, 'setItem');
+
+  comp.handleSuccess('my-token');
+
+  expect(localStorage.setItem).toHaveBeenCalledWith('token', 'my-token');
+  expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
+  });
+
 });
