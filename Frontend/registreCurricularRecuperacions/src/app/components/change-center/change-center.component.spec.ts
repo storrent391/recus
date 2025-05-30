@@ -39,13 +39,25 @@ describe('ChangeCenterComponent', () => {
     comp.loadCenters();
     expect(comp.centers).toEqual(mockCenters);
   });
+  
   it('loadCenters(): should set errorMessage when service fails', () => {
-  const mockError = { error: { message: 'Load failed' } };
-  auth.listMyCenters.and.returnValue(throwError(() => mockError));
+    const mockError = { error: { message: 'Load failed' } };
+    auth.listMyCenters.and.returnValue(throwError(() => mockError));
 
-  comp.loadCenters();
+    comp.loadCenters();
 
-  expect(comp.centers).toEqual([]);
-  expect(comp.errorMessage).toBe('Load failed');
-});
+    expect(comp.centers).toEqual([]);
+    expect(comp.errorMessage).toBe('Load failed');
+  });
+
+  it('onSelectCenter(): should call handleSuccess() on success', () => {
+    const mockToken = 'abc123';
+    auth.chooseCenterProtected.and.returnValue(of({ token: mockToken }));
+    spyOn(comp, 'handleSuccess');
+
+    const selected = { centerName: 'TestCenter', role: 1 };
+    comp.onSelectCenter(selected);
+
+    expect(comp.handleSuccess).toHaveBeenCalledWith(mockToken);
+  });
 });
