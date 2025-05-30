@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ManageGroupsComponent } from './manage-groups.component';
 import { GroupsService } from '../../../services/groups.service';
+import Swal from 'sweetalert2';
+
 
 describe('ManageGroupsComponent', () => {
   let fixture: ComponentFixture<ManageGroupsComponent>;
@@ -38,4 +40,15 @@ describe('ManageGroupsComponent', () => {
     expect(comp.groups).toEqual(mockList);
     expect(comp.originalNames).toEqual({ '1': 'Alpha' });
   });
+  
+  it('ngOnInit(): should show error alert on load failure', () => {
+    
+    groupsService.getGroupsByYear.and.returnValue(throwError(() => ({ error: {} })));
+    
+    spyOn(Swal, 'fire');
+
+    comp.ngOnInit();
+
+    expect(Swal.fire).toHaveBeenCalledWith('Error', 'Unable to load groups.', 'error');
+});
 });
