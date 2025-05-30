@@ -24,7 +24,7 @@ describe('ChooseCenterComponent', () => {
     comp.ngOnInit();
 
     expect(comp.errorMessage).toBe('No center data.');
-    expect(comp.userUUID).toBe('');
-    expect(comp.centers).toEqual([]);
+    expect(comp.userId).toBe('');
+    expect(comp.availableCenters).toEqual([]);
   });
 });
