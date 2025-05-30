@@ -1,1 +1,19 @@
-<p>choose-center works!</p>
+<div class="choose-center">
+  <h2>Select Your Center</h2>
+
+  <div *ngIf="!availableCenters.length">
+    <p>No centers available or session expired.</p>
+    <button (click)="returnToLogin()">Back to Login</button>
+  </div>
+
+  <ul *ngIf="availableCenters.length">
+    <li *ngFor="let center of availableCenters">
+      {{ center.centerName }}
+      <button (click)="selectCenter(center.centerName)">Choose</button>
+    </li>
+  </ul>
+
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
