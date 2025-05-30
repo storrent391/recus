@@ -23,4 +23,15 @@ export class ChangeCenterComponent {
       }
     });
   }
+
+  onSelectCenter(center: any): void {
+    this.auth.chooseCenterProtected(center.centerName).subscribe({
+      next: res => this.handleSuccess(res.token)
+    });
+  }
+
+  handleSuccess(token: string): void {
+    
+  }
+
 }
