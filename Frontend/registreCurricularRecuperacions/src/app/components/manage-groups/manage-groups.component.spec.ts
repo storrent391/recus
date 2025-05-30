@@ -67,4 +67,17 @@ describe('ManageGroupsComponent', () => {
     expect(comp.newGroupName).toBe('');
     expect(comp.newCourse).toBe('');
   });
+  it('submitNewGroup(): should warn when group name is empty', () => {
+    spyOn(Swal, 'fire');
+    comp.newGroupName = '';
+    comp.newCourse = '1st';
+
+    comp.submitNewGroup();
+
+    expect(Swal.fire).toHaveBeenCalledWith(
+      'Validation',
+      'Group name is required.',
+      'warning'
+    );
+  });
 });
