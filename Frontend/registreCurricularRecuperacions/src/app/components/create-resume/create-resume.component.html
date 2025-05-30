@@ -1,1 +1,30 @@
-<p>create-resume works!</p>
+<!-- src/app/create-resume/create-resume.component.html -->
+<div class="create-summary">
+  <h2>Create New Summary</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="viewSummary()">
+    <div class="form-group">
+      <label for="groupSelect">Group:</label>
+      <select
+        id="groupSelect"
+        name="group"
+        [(ngModel)]="selectedGroupId"
+        required
+      >
+        <option value="" disabled selected>-- Select a group --</option>
+        <option
+          *ngFor="let grp of groupList"
+          [value]="grp.uuid"
+        >
+          {{ grp.name }} ({{ grp.courseName }}) - {{ grp.year }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit">View Summary</button>
+  </form>
+</div>
