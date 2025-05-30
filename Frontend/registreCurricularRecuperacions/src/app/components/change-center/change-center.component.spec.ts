@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ChangeCenterComponent } from './change-center.component';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
@@ -7,10 +7,15 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 describe('ChangeCenterComponent', () => {
   let comp: ChangeCenterComponent;
-  let fixture;
   const mockCenters = [{ centerName: 'Centro1', role: 1 }];
+  
+  let fixture: ComponentFixture<ChangeCenterComponent>;
+  let auth: jasmine.SpyObj<AuthService>;
+  let router: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
+    auth = jasmine.createSpyObj('AuthService', ['listMyCenters', 'chooseCenterProtected']);
+    router = jasmine.createSpyObj('Router', ['navigate']);
     await TestBed.configureTestingModule({
       imports: [ChangeCenterComponent],
       providers: [
