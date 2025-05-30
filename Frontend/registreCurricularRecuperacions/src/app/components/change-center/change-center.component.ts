@@ -1,5 +1,7 @@
+// change-center.component.ts
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-center',
@@ -10,16 +12,16 @@ export class ChangeCenterComponent {
   centers: any[] = [];
   errorMessage = '';
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
-  loadCenters(): void {
+  public loadCenters(): void {
     this.auth.listMyCenters().subscribe({
       next: data => {
         this.centers = data;
         this.errorMessage = '';
       },
       error: err => {
-        this.errorMessage = err.error?.message || err.message;
+        this.handleError(err);
       }
     });
   }
@@ -31,13 +33,12 @@ export class ChangeCenterComponent {
     });
   }
 
+  public handleSuccess(token: string): void {
+    localStorage.setItem('token', token);
+    this.router.navigate(['/dashboard']);
+  }
+
   public handleError(err: any): void {
-    
+    this.errorMessage = err?.error?.message || err?.message || 'Unknown error';
   }
-
-
-  handleSuccess(token: string): void {
-    
-  }
-
 }
