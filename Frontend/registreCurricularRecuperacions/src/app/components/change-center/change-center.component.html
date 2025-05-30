@@ -1,1 +1,15 @@
-<p>change-center works!</p>
+
+<div class="change-center">
+  <h2>Change Center</h2>
+
+  <ul>
+    <li *ngFor="let center of centers">
+      {{ center.centerName }}
+      <button (click)="onSelectCenter(center)">Select</button>
+    </li>
+  </ul>
+
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
