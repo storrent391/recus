@@ -1,0 +1,61 @@
+
+<div class="show-resume">
+  <h2>Summary Details</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="filter-container">
+    <label>
+      <input type="checkbox" [(ngModel)]="showUnworked" />
+      Show only unworked
+    </label>
+  </div>
+
+  <ng-container *ngIf="groupedSubjects.length > 0; else noData">
+    <div
+      class="subject-group"
+      *ngFor="let subj of groupedSubjects"
+    >
+      <h3
+        (click)="toggleSubject(subj)"
+        class="subject-header"
+      >
+        {{ subj.expanded ? '▾' : '▸' }} {{ subj.subjectName }}
+      </h3>
+      <div *ngIf="subj.expanded" class="subject-body">
+        <div
+          class="competency"
+          *ngFor="let comp of subj.competencies"
+        >
+          <h4
+            (click)="toggleCompetency(comp)"
+            class="competency-header"
+          >
+            {{ comp.expanded ? '▾' : '▸' }} {{ comp.competencyName }}
+          </h4>
+          <ul *ngIf="comp.expanded" class="criteria-list">
+            <li
+              *ngFor="let crit of comp.rows"
+              class="criteria-row"
+              *ngIf="!showUnworked || crit.TotalWorked === 0"
+            >
+              <span class="criteria-desc">
+                {{ crit.OrderByMainCriteria }}.{{ crit.OrderByCriteria }}.
+                {{ crit.CriteriaDescription }}
+              </span>
+              <span class="criteria-total">
+                Worked: {{ crit.TotalWorked }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noData>
+    <p class="empty-state">No data to display.</p>
+  </ng-template>
+</div>
