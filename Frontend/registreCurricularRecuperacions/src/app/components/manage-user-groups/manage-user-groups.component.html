@@ -1,0 +1,54 @@
+
+<div class="manage-user-groups">
+  <h2>User’s Groups ({{ year }})</h2>
+
+  <div class="table-container">
+    <h3>Assigned Groups</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of assigned">
+          <td>{{ g.name }}</td>
+          <td>{{ g.courseName }}</td>
+          <td>
+            <button (click)="confirmRemove(g)" title="Remove">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="assigned.length === 0">
+          <td colspan="3" class="empty-state">No groups assigned</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container">
+    <h3>Available Groups</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of available">
+          <td>{{ g.name }}</td>
+          <td>{{ g.courseName }}</td>
+          <td>
+            <button (click)="add(g)" title="Assign">➕</button>
+          </td>
+        </tr>
+        <tr *ngIf="available.length === 0">
+          <td colspan="3" class="empty-state">No available groups</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
