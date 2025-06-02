@@ -1,0 +1,16 @@
+
+<nav class="navbar">
+  <div class="navbar-title">RegistreCurricular</div>
+
+  <div class="navbar-actions">
+    <button class="dashboard-btn" (click)="goDashboard()">Dashboard</button>
+
+    <div class="profile-container">
+      <button class="profile-btn" (click)="toggleProfileMenu()">👤</button>
+      <ul class="profile-menu" *ngIf="showProfileMenu">
+        <li><button (click)="goChangeCenter()">Change Center</button></li>
+        <li><button (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
