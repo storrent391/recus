@@ -112,5 +112,20 @@ const mockGroups: GroupModel[] = [
         'warning'
       );
     });
+    it('saveName(): should not call updateGroupName if name is unchanged', fakeAsync(() => {
+    
+      const group = new GroupModel('1', 'Alpha', 'Center A', '1st', '2025-26');
+      comp.groups = [group];
+      comp.originalNames = { '1': 'Alpha' };
+
+      
+      const updateSpy = groupsService.updateGroupName
+        .and.returnValue(of(group));
+
+      comp.saveName(group);
+      tick();
+
+      expect(updateSpy).not.toHaveBeenCalled();
+    }));
   
 });
