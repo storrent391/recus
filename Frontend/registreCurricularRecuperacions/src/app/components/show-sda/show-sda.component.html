@@ -1,0 +1,53 @@
+<!-- src/app/show-sda/show-sda.component.html -->
+<div class="show-sda">
+  <h2>Learning Activity Details</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="sda">
+    <h3>{{ sda.title }}</h3>
+    <p>{{ sda.description }}</p>
+    <p>Group: {{ sda.groupName }}</p>
+    <p>Created: {{ sda.createdAt | date: 'short' }}</p>
+
+    <div *ngFor="let subj of sda.subjects" class="subject-section">
+      <h4 (click)="subj.expanded = !subj.expanded" class="subject-header">
+        {{ subj.expanded ? '▾' : '▸' }} Subject: {{ subj.subjectName }}
+        <small>({{ subj.subjectTemplate }})</small>
+      </h4>
+
+      <div *ngIf="subj.expanded" class="competencies">
+        <div *ngFor="let compModel of subj.competencies" class="competency-block">
+          <h5 (click)="toggleCompetency(compModel)" class="competency-header">
+            {{ compModel.expanded ? '▾' : '▸' }}
+            <input
+              type="checkbox"
+              [checked]="compModel.competencyWorked"
+              disabled
+            />
+            {{ compModel.competencyOrder }}.
+            <span *ngIf="compModel.competencyType === 1">Competence:</span>
+            <span *ngIf="compModel.competencyType === 0">Knowledge:</span>
+            {{ compModel.competencyDescription }}
+          </h5>
+
+          <div *ngIf="compModel.expanded" class="criteria-list">
+            <div *ngFor="let crit of compModel.criteria" class="criteria-item">
+              <h6>
+                <input
+                  type="checkbox"
+                  [checked]="crit.criteriaWorked"
+                  (change)="onCriteriaChange($event, crit, compModel)"
+                />
+                {{ crit.criteriaMainOrder }}.{{ crit.criteriaOrder }}.
+                {{ crit.criteriaDescription }}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
