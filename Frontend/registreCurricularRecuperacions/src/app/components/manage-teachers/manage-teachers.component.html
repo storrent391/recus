@@ -1,0 +1,67 @@
+<!-- src/app/manage-teachers/manage-teachers.component.html -->
+<div class="manage-teachers">
+  <h2>Manage Teachers</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Save</th>
+          <th>Remove</th>
+          <th>Groups</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of teachers">
+          <td>{{ t.name || '-' }}</td>
+          <td>{{ t.email }}</td>
+          <td>
+            <select [(ngModel)]="t.role" name="role-{{ t.email }}" required>
+              <option [ngValue]="1">Teacher</option>
+              <option [ngValue]="2">Center Admin</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="saveRole(t)" [disabled]="t.role === originalRoles[t.email]">💾</button>
+          </td>
+          <td>
+            <button (click)="confirmDelete(t)">🗑️</button>
+          </td>
+          <td>
+            <button (click)="manageGroups(t)" title="Manage Groups">👥</button>
+          </td>
+        </tr>
+        <tr *ngIf="teachers.length === 0">
+          <td colspan="6" class="empty-state">No teachers assigned to this center.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="add-button" (click)="toggleForm()">
+    <span>+</span> Add Teacher
+  </button>
+
+  <form *ngIf="showForm" (ngSubmit)="submitNewTeacher()" class="add-form">
+    <input
+      type="email"
+      [(ngModel)]="newEmail"
+      name="newEmail"
+      maxlength="50"
+      placeholder="Teacher email"
+      required
+    />
+    <select [(ngModel)]="newRole" name="newRole" required>
+      <option [ngValue]="null" disabled>-- Select role --</option>
+      <option [ngValue]="1">Teacher</option>
+      <option [ngValue]="2">Center Admin</option>
+    </select>
+    <div class="form-buttons">
+      <button type="submit">Save</button>
+      <button type="button" (click)="toggleForm()">Cancel</button>
+    </div>
+  </form>
+</div>
