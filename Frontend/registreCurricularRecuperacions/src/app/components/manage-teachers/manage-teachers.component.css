@@ -1,0 +1,83 @@
+/* src/app/manage-teachers/manage-teachers.component.css */
+.manage-teachers {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.manage-teachers h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.manage-teachers .table-container {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.manage-teachers table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-teachers th,
+.manage-teachers td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.manage-teachers select {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.manage-teachers .add-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.manage-teachers .add-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.manage-teachers .add-form input,
+.manage-teachers .add-form select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.manage-teachers .form-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.manage-teachers button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manage-teachers button:hover {
+  background-color: #0056b3;
+}
+
+.manage-teachers .empty-state {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}

@@ -56,7 +56,7 @@
         <label>
           <input
             type="checkbox"
-            (change)="onSubjectToggle(subj.uuid, $event.target.checked)"
+            (change)="onSubjectToggle(subj.uuid, $any($event.target).checked)"
           />
           {{ subj.name }}
         </label>

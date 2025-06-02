@@ -1,0 +1,70 @@
+/* src/app/list-sda/list-sda.component.css */
+.list-sda {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fafafa;
+}
+
+.list-sda h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.list-sda .error {
+  margin-bottom: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+.list-sda .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.list-sda .controls button {
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.list-sda .controls button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.list-sda .controls select {
+  padding: 0.3rem;
+}
+
+.list-sda table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.list-sda th,
+.list-sda td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.list-sda th.sortable {
+  cursor: pointer;
+}
+
+.list-sda th.active {
+  background-color: #e9ecef;
+}
+
+.list-sda tr.empty td {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}

@@ -1,0 +1,65 @@
+/* src/app/create-resume/create-resume.component.css */
+.create-summary {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.create-summary h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.create-summary .error {
+  margin-bottom: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+.create-summary form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-summary .form-group {
+  margin-bottom: 1rem;
+}
+
+.create-summary label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.create-summary select,
+.create-summary input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-summary small {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.create-summary button[type="submit"] {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-summary button[type="submit"]:hover {
+  background-color: #0056b3;
+}

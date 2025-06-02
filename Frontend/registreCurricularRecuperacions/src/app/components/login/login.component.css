@@ -1,0 +1,20 @@
+/* src/app/login/login.component.css */
+.login-page {
+  max-width: 400px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.login-page h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+#google-signin {
+  margin-bottom: 1rem;
+}
+
+.login-page .error {
+  color: #c00;
+  margin-top: 1rem;
+}

@@ -1,0 +1,33 @@
+/* src/app/page-not-found/page-not-found.component.css */
+.page-not-found {
+  max-width: 400px;
+  margin: 3rem auto;
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.page-not-found h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.page-not-found p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.page-not-found button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-not-found button:hover {
+  background-color: #0056b3;
+}

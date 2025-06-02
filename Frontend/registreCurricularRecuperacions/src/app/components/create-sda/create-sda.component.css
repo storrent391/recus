@@ -1,0 +1,74 @@
+/* src/app/create-sda/create-sda.component.css */
+.create-sda {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.create-sda h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.create-sda .error {
+  margin-bottom: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+.create-sda form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-sda .field {
+  margin-bottom: 1rem;
+}
+
+.create-sda label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.create-sda input[type="text"],
+.create-sda textarea,
+.create-sda select {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-sda small {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.create-sda .subjects {
+  margin-bottom: 1rem;
+}
+
+.create-sda .subject-item {
+  margin: 0.25rem 0;
+}
+
+.create-sda button[type="submit"] {
+  align-self: flex-end;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-sda button[type="submit"]:hover {
+  background-color: #1e7e34;
+}

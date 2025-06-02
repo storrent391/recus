@@ -1,0 +1,71 @@
+/* src/app/show-resume/show-resume.component.css */
+.show-resume {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.show-resume h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.show-resume .error {
+  margin-bottom: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+.show-resume .filter-container {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.show-resume .subject-group {
+  margin-bottom: 1rem;
+}
+
+.show-resume .subject-header {
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.show-resume .subject-body {
+  margin-left: 1rem;
+}
+
+.show-resume .competency-header {
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+.show-resume .criteria-list {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.show-resume .criteria-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+
+.show-resume .criteria-desc {
+  font-weight: 500;
+}
+
+.show-resume .criteria-total {
+  font-style: italic;
+}
+
+.show-resume .empty-state {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}

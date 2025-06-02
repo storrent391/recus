@@ -1,0 +1,83 @@
+/* src/app/manage-groups/manage-groups.component.css */
+.manage-groups {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.manage-groups h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.manage-groups .table-container {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.manage-groups table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-groups th,
+.manage-groups td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.manage-groups input[type="text"] {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.manage-groups .add-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manage-groups .add-form {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.manage-groups .add-form input,
+.manage-groups .add-form select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.manage-groups .form-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.manage-groups button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manage-groups button:hover {
+  background-color: #0056b3;
+}
+
+.manage-groups .empty-state {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}

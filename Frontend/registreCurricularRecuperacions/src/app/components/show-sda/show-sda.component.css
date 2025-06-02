@@ -1,0 +1,65 @@
+/* src/app/show-sda/show-sda.component.css */
+.show-sda {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.show-sda h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.show-sda .error {
+  margin-bottom: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+.show-sda h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.show-sda p {
+  margin: 0.25rem 0;
+}
+
+.show-sda .subject {
+  margin: 1rem 0;
+}
+
+.show-sda .subject-header {
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.show-sda .competency {
+  margin-left: 1rem;
+}
+
+.show-sda .competency-header {
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.show-sda .criteria {
+  margin-left: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.show-sda .criteria h6 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+

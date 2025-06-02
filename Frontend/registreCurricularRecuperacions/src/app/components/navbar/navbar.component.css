@@ -1,0 +1,69 @@
+/* src/app/navbar/navbar.component.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40;
+  padding: 0.5rem 1rem;
+  color: #fff;
+}
+
+.navbar-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}
+
+.profile-container {
+  position: relative;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 120px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.profile-menu li {
+  padding: 0.25rem 1rem;
+}
+
+.profile-menu li button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile-menu li button:hover {
+  background-color: #f0f0f0;
+}

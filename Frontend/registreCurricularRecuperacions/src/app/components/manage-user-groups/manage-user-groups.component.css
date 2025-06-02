@@ -1,0 +1,60 @@
+/* src/app/manage-user-groups/manage-user-groups.component.css */
+.manage-user-groups {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.manage-user-groups h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.manage-user-groups .table-container {
+  margin-bottom: 1.5rem;
+}
+
+.manage-user-groups table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-user-groups th,
+.manage-user-groups td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.manage-user-groups button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manage-user-groups button[title="Remove"] {
+  background-color: #dc3545;
+}
+
+.manage-user-groups button[title="Remove"]:hover {
+  background-color: #c82333;
+}
+
+.manage-user-groups button[title="Assign"] {
+  background-color: #007bff;
+}
+
+.manage-user-groups button[title="Assign"]:hover {
+  background-color: #0056b3;
+}
+
+.manage-user-groups .empty-state {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}

@@ -1,0 +1,46 @@
+/* src/app/change-center/change-center.component.css */
+.change-center {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.change-center h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.change-center ul {
+  list-style: none;
+  padding: 0;
+}
+
+.change-center li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.change-center button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.change-center button:hover {
+  background-color: #0056b3;
+}
+
+.change-center .error {
+  margin-top: 1rem;
+  color: #c00;
+  text-align: center;
+}
